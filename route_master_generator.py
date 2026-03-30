@@ -1,0 +1,672 @@
+import os
+import re
+
+# ==========================================
+# 🚀 ELITE LUXURY BOOKINGS - MASTER GENERATOR
+# ==========================================
+# When you want to add new pages, just add your keywords to this list below!
+# Format is: ("Origin City", "Destination City")
+
+NEW_ROUTES = [
+    ("Miami", "Aspen"),
+    ("Dallas", "Denver"),
+    ("Chicago", "Miami"),
+    ("San Francisco", "London")
+    # Add as many as you want here! e.g., ("Paris", "Monaco")
+]
+
+# ==========================================
+# ICAO AIRPORT DICTIONARY
+# (Add missing cities here if you want accurate airports in the dropdown)
+# ==========================================
+AIRPORTS = {
+    "Miami": '<option value="KOPF" selected>Miami Opa-Locka (KOPF)</option><option value="KMIA">Miami Int (KMIA)</option>',
+    "Aspen": '<option value="KASE" selected>Aspen County (KASE)</option>',
+    "Dallas": '<option value="KDAL" selected>Dallas Love Field (KDAL)</option><option value="KDFW">Dallas Fort Worth (KDFW)</option>',
+    "Denver": '<option value="KAPA" selected>Centennial (KAPA)</option><option value="KDEN">Denver Int (KDEN)</option>',
+    "Chicago": '<option value="KPWK" selected>Chicago Executive (KPWK)</option><option value="KMDW">Midway (KMDW)</option>',
+    "San Francisco": '<option value="KSFO" selected>San Francisco Int (KSFO)</option><option value="KOAK">Oakland (KOAK)</option>',
+    "London": '<option value="EGLC" selected>London City (EGLC)</option><option value="EGGW">Luton (EGGW)</option><option value="EGKB">Biggin Hill (EGKB)</option>',
+    "Paris": '<option value="LFPB" selected>Paris Le Bourget (LFPB)</option><option value="LFPG">Charles de Gaulle (LFPG)</option>',
+    "New York": '<option value="KTEB" selected>Teterboro (KTEB)</option><option value="KHPN">Westchester (KHPN)</option>',
+    "Los Angeles": '<option value="KVNY" selected>Van Nuys (KVNY)</option><option value="KLAX">Los Angeles Int (KLAX)</option>',
+    "Las Vegas": '<option value="KLAS" selected>Harry Reid Int (KLAS)</option><option value="KVGT">North Las Vegas (KVGT)</option>'
+}
+
+def get_airport_html(city, default_type="departure"):
+    if city in AIRPORTS:
+        return AIRPORTS[city]
+    # Fallback generic option if city isn't in dictionary
+    return f'<option value="VIP" selected>{city} VIP Terminal</option>'
+
+# ==========================================
+# HTML TEMPLATES (HERO / FORM / API)
+# ==========================================
+
+def get_hero_template(theme_id, origin, dest):
+    slug = f"{origin.lower().replace(' ', '-')}-to-{dest.lower().replace(' ', '-')}-private-jet-cost"
+    
+    desc_list = [
+        f"Calculate your exact {origin} to {dest} private jet cost. Bypass commercial chaos entirely with our direct VIP charter routing.",
+        f"Unlock specialized luxury jet charter pricing from {origin} to {dest}. We provide ultimate privacy and rapid turnaround for elite travelers.",
+        f"Review precise aircraft flight times and charter costs between {origin} and {dest}. Maximize block efficiency with our optimized global fleet.",
+        f"Secure aggressive financial block rates for your {origin} to {dest} private jet charter. Transparent taxes, zero hidden positioning fees."
+    ]
+    meta_desc = desc_list[theme_id]
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>{origin} to {dest} Private Jet Cost | VIP Charter Rates</title>
+    <meta name="description" content="{meta_desc}">
+    <link rel="canonical" href="https://eliteluxurybookings.com/{slug}/">
+
+    <!-- Premium Typography -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap">
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eliteluxurybookings.com/" }},
+        {{ "@type": "ListItem", "position": 2, "name": "Elite Private Jet Charter", "item": "https://eliteluxurybookings.com/elite-private-jet-charter/" }},
+        {{ "@type": "ListItem", "position": 3, "name": "{origin} to {dest}", "item": "https://eliteluxurybookings.com/{slug}/" }}
+      ]
+    }}
+    </script>
+
+    <!-- Service Schema -->
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Private Jet Charter",
+      "provider": {{ "@type": "Organization", "name": "Elite Luxury Bookings", "url": "https://eliteluxurybookings.com" }},
+      "areaServed": "{origin} to {dest}",
+      "description": "{meta_desc}"
+    }}
+    </script>
+    """
+
+def get_style_and_body(origin, dest):
+    dep_opts = get_airport_html(origin, "departure")
+    arr_opts = get_airport_html(dest, "arrival")
+    return f"""
+    <style>
+        :root {{
+            --primary-gold: #D4AF37;
+            --deep-black: #050505;
+            --graphene: #1A1A1A;
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(212, 175, 55, 0.15);
+            --text-main: #FFFFFF;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }}
+        * {{ margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }}
+        html {{ scroll-behavior: smooth; }}
+        body {{ font-family: 'Inter', sans-serif; background: var(--deep-black); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }}
+        h1, h2, h3, h4, .serif {{ font-family: 'Cormorant Garamond', serif; }}
+        .container {{ max-width: 1200px; margin: 0 auto; padding: 0 2rem; }}
+        .gold-text {{ color: var(--primary-gold); }}
+        .glass-panel {{ background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 20px; }}
+
+        .hero {{ padding: 100px 0 60px; text-align: center; position: relative; background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, var(--deep-black) 70%); }}
+        .hero h1 {{ font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; margin-bottom: 1.5rem; line-height: 1.1; }}
+        .hero-sub {{ font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem; }}
+
+        .form-wrapper {{ max-width: 1000px; margin: 0 auto; border-radius: 30px; padding: 4rem; background: rgba(26, 26, 26, 0.8); border: 1px solid var(--glass-border); box-shadow: 0 30px 60px rgba(0,0,0,0.6); text-align: left; }}
+        .form-grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }}
+        .form-group {{ display: flex; flex-direction: column; gap: 0.8rem; }}
+        .form-group.full {{ grid-column: span 3; }}
+        .form-label {{ font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-gold); font-weight: 600; }}
+        .form-control {{ width: 100%; height: 56px; padding: 0 1.2rem; background-color: #FFFFFF !important; border: 1px solid #D4AF37 !important; color: #000000 !important; border-radius: 8px; font-size: 1rem; transition: var(--transition); box-sizing: border-box; }}
+        .form-control::-webkit-calendar-picker-indicator {{ cursor: pointer; filter: none !important; }}
+        select.form-control {{ color: #000000 !important; background-color: #FFFFFF !important; cursor: pointer; padding-top: 0; padding-bottom: 0; height: 56px; }}
+        .form-control option {{ background-color: #FFFFFF !important; color: #000000 !important; }}
+        .form-control:focus {{ outline: none; border-color: #B8860B !important; box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2); }}
+
+        .section-padding {{ padding: 6rem 0; }}
+        .grid-2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: flex-start; }}
+        .seo-content {{ font-size: 1.05rem; color: #ddd; line-height: 1.8; }}
+        .seo-content p {{ margin-bottom: 1.5rem; }}
+        .benefit-card {{ padding: 3rem; transition: var(--transition); background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)); border: 1px solid var(--glass-border); border-radius: 20px; height: 100%; }}
+        .benefit-card:hover {{ transform: translateY(-5px); border-color: var(--primary-gold); }}
+
+        .btn {{ display: inline-block; padding: 1.2rem 2.5rem; border-radius: 8px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; text-decoration: none; transition: var(--transition); cursor: pointer; text-align: center; }}
+        .btn-gold {{ background: linear-gradient(135deg, var(--primary-gold), #B8860B); color: #000; border: none; }}
+        .btn-outline {{ border: 1px solid var(--primary-gold); color: var(--primary-gold); background: transparent; }}
+        .btn:hover {{ transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }}
+        
+        .faq-item {{ border-bottom: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 0; }}
+        .faq-item h4 {{ font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem; }}
+
+        @keyframes ping {{ 75%, 100% {{ transform: scale(2); opacity: 0; }} }}
+        @keyframes spin {{ from {{ transform: rotate(0deg); }} to {{ transform: rotate(360deg); }} }}
+
+        @media (max-width: 1024px) {{ .grid-2 {{ grid-template-columns: 1fr; gap: 3rem; }} .form-grid {{ grid-template-columns: 1fr 1fr; }} }}
+        @media (max-width: 768px) {{ .section-padding {{ padding: 4rem 0; }} .form-grid {{ grid-template-columns: 1fr; }} }}
+    </style>
+</head>
+<body>
+
+    <header class="hero" id="top">
+        <div class="container">
+            <h1><span class="gold-text">{origin} to {dest}</span> Private Jet Cost <span id="dynamic-date" style="font-size: 0.5em; opacity: 0.8; font-weight: 300; display: block; margin-top: 10px;">(Updated <span class="current-month"></span> <span class="current-year"></span>)</span></h1>
+            <p class="hero-sub">Seeking the precise breakdown of your <strong>{origin} to {dest} private jet cost</strong>? Evade commercial congestion completely. Gain immediate tarmac access and arrive relentlessly fast.</p>
+
+            <!-- LIVE SCARCITY PING -->
+            <div style="background: rgba(255, 77, 77, 0.05); border: 1px solid rgba(255, 77, 77, 0.3); padding: 12px 20px; border-radius: 12px; margin: 0 auto 2.5rem; max-width: 700px; display: flex; align-items: center; justify-content: center; gap: 15px;">
+                <span style="position: relative; display: flex; height: 12px; width: 12px;">
+                    <span style="animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; position: absolute; display: inline-flex; height: 100%; width: 100%; border-radius: 50%; background-color: #ff4d4d; opacity: 0.75;"></span>
+                    <span style="position: relative; display: inline-flex; border-radius: 50%; height: 12px; width: 12px; background-color: #ff4d4d;"></span>
+                </span>
+                <span style="color: #ff4d4d; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">High Demand Corridor: FBO slots filling rapidly for upcoming weekend</span>
+            </div>
+
+            <!-- LEAD FORM API -->
+            <div class="form-wrapper glass-panel">
+                <div id="form-container">
+                    <form id="tripForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="departure">Departure Airport</label>
+                                <select class="form-control" id="departure" name="departure" required>
+                                    {dep_opts}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="arrival">Arrival Airport</label>
+                                <select class="form-control" id="arrival" name="arrival" required>
+                                    {arr_opts}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="travel_date">Travel Date</label>
+                                <input type="date" class="form-control" id="travel_date" name="travel_date" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="travel_time">Departure Time</label>
+                                <input type="time" class="form-control" id="travel_time" name="travel_time" value="10:00" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="passengers">Passengers</label>
+                                <input type="number" class="form-control" id="passengers" name="passengers" min="1" max="19" placeholder="e.g. 4" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="fullName">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Hon. John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Private Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="client@exclusive.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contact">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact" name="contact" placeholder="+1 212 555 XXXX" required>
+                            </div>
+                            <div class="form-group" style="justify-content: flex-end;">
+                                <button type="submit" id="submitBtn" class="btn btn-gold" style="width: 100%; min-height: 56px; height: auto; margin-top: 2rem; padding: 1rem;">Commence Charter Request</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="success-panel" style="display:none; text-align: center; padding: 4rem 2rem;">
+                    <h3 style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--primary-gold);">Logistics Engaged</h3>
+                    <p>Expect a confidential proposal within 30 minutes.</p>
+                    <div style="margin-bottom: 2.5rem; padding: 1.5rem; border: 1px dashed var(--primary-gold); border-radius: 12px; background: rgba(212, 175, 55, 0.05);">
+                        <span style="font-size: 0.8rem; text-transform: uppercase;">Your Dispatch Reference:</span>
+                        <span id="trip-ref-display" style="font-size: 2rem; font-family: 'Cormorant Garamond'; color: var(--primary-gold);">GENERATING...</span>
+                    </div>
+                    <a href="https://wa.me/918801079030" class="btn btn-gold" id="whatsapp-link" target="_blank">Affirm VIP Details via WhatsApp</a>
+                </div>
+                
+                <div id="error-panel" style="display:none; text-align:center; padding: 2rem;">
+                    <h3 style="color: #ff4d4d; margin-bottom: 1rem;">System Link Error</h3>
+                    <p>The aviation system encountered a technical block. Please utilize WhatsApp.</p>
+                    <a href="https://wa.me/918801079030" class="btn btn-outline" style="width: 100%;">Priority Comm</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding" style="background: rgba(212, 175, 55, 0.02); border-bottom: 1px solid var(--glass-border);">
+        <div class="container">
+            <div class="grid-2">
+                <div class="seo-content">
+                    <h2 class="serif" style="font-size: 2.8rem; color: var(--primary-gold); margin-bottom: 1.5rem;">The Premier Aviation Routing</h2>
+                    <p>Establishing the correct <strong>{origin} to {dest} private jet cost</strong> demands strict execution. Navigating congested commercial hubs destroys business efficiency. Launching your private payload straight into {dest} allows maximum operational success.</p>
+                    <p>Depending on the season, inventory availability dramatically changes. Consult our dispatchers to pinpoint elite operators positioned along this specific corridor.</p>
+                </div>
+                <div class="glass-panel" style="padding: 3rem; height: 100%;">
+                    <h3 class="serif" style="margin-top:0;">The Tactical Advantage</h3>
+                    <ul style="list-style: none; margin: 1rem 0;">
+                        <li style="margin-bottom: 1rem;">✓ <strong>Terminal Privacy:</strong> Bypass public zones completely.</li>
+                        <li style="margin-bottom: 1rem;">✓ <strong>Rapid Access:</strong> Board and throttle up in minutes.</li>
+                        <li style="margin-bottom: 1rem;">✓ <strong>Ground Logistics:</strong> Valet transfers synced to arrival.</li>
+                        <li style="margin-bottom: 1rem;">✓ <strong>Unbroken Security:</strong> Highly vetted ARGUS crews.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+"""
+
+
+# ==========================================
+# SEMANTIC THEME GENERATION
+# ==========================================
+def get_theme_schema(theme_id, origin, dest):
+    schemas = [
+        # Theme 0
+        """
+    <!-- JSON-LD SEO SCHEMA INJECTION -->
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does the private flight from {origin} to {dest} optimize executive time?", "acceptedAnswer": {"@type": "Answer", "text": "By eliminating TSA checkpoints, a private charter from {origin} to {dest} allows seamless transition."}}, {"@type": "Question", "name": "What corporate factors dictate the charter pricing between {origin} and {dest}?", "acceptedAnswer": {"@type": "Answer", "text": "Corporate routing costs are heavily influenced by the chosen fleet class and high-speed Wi-Fi requirements."}}, {"@type": "Question", "name": "What are the executive catering options for the {origin} departure?", "acceptedAnswer": {"@type": "Answer", "text": "We provide discrete, custom culinary arrangements sourced directly from elite local {origin} partners prior to departure."}}, {"@type": "Question", "name": "Is high-speed connection guaranteed en route to {dest}?", "acceptedAnswer": {"@type": "Answer", "text": "The majority of our heavy and super-midsize jets accessing {dest} feature robust Ku-band Wi-Fi capabilities."}}, {"@type": "Question", "name": "Can we conduct boardroom meetings in-flight?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. High-density executive jets offer club-seating arrangements designed specifically for secure internal briefings."}}]}
+    </script>""",
+        # Theme 1
+        """
+    <!-- JSON-LD SEO SCHEMA INJECTION -->
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What makes the luxury jet experience from {origin} to {dest} entirely unique?", "acceptedAnswer": {"@type": "Answer", "text": "A specialized VIP charter ensures ultimate privacy for your family."}}, {"@type": "Question", "name": "How much luggage can a VIP jet from {origin} to {dest} accommodate?", "acceptedAnswer": {"@type": "Answer", "text": "Depending on the selected heavy jet class, families can easily transport oversized valuables."}}, {"@type": "Question", "name": "Are luxury pets permitted in the cabin to {dest}?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, certified operators allow your verified pets to fly comfortably alongside you in the cabin."}}, {"@type": "Question", "name": "Can my private security detail board directly in {origin}?", "acceptedAnswer": {"@type": "Answer", "text": "Our elite ground logistics team coordinates closely with private security firms for unobstructed tarmac boarding."}}, {"@type": "Question", "name": "Does the flight to {dest} include a dedicated flight attendant?", "acceptedAnswer": {"@type": "Answer", "text": "Heavy executive jets inherently include a highly-trained flight attendant for ultimate onboard hospitality."}}]}
+    </script>""",
+        # Theme 2
+        """
+    <!-- JSON-LD SEO SCHEMA INJECTION -->
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the true flight time from {origin} to {dest} on a private jet?", "acceptedAnswer": {"@type": "Answer", "text": "By cruising at altitudes exceeding 41,000 feet, your charter evades tremendous weather systems."}}, {"@type": "Question", "name": "Does aircraft range limit the {origin} to {dest} mission?", "acceptedAnswer": {"@type": "Answer", "text": "The technical range depends heavily on payload mass and atmospheric jet streams."}}, {"@type": "Question", "name": "How does the jet stream impact flight speed to {dest}?", "acceptedAnswer": {"@type": "Answer", "text": "High-altitude tailwinds can significantly compress block times, ensuring rapid arrival."}}, {"@type": "Question", "name": "What are the runway length requirements in {dest}?", "acceptedAnswer": {"@type": "Answer", "text": "Heavy jets require specific runway thresholds which we actively verify against all operational {dest} FBOs."}}, {"@type": "Question", "name": "Can the aircraft climb above typical storm cells?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, by holding flight levels past 45k feet, operators bypass standard commercial weather patterns."}}]}
+    </script>""",
+        # Theme 3
+        """
+    <!-- JSON-LD SEO SCHEMA INJECTION -->
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How to secure the most optimized {origin} to {dest} private jet cost?", "acceptedAnswer": {"@type": "Answer", "text": "Acquiring aggressive pricing between {origin} and {dest} requires monitoring real-time empty leg databases."}}, {"@type": "Question", "name": "Are there hidden fees crossing from {origin} into {dest}?", "acceptedAnswer": {"@type": "Answer", "text": "Our charter proposals are strictly transparent. We calculate all international routing taxes."}}, {"@type": "Question", "name": "How do empty leg repositioning flights reduce price?", "acceptedAnswer": {"@type": "Answer", "text": "Operators aggressively discount jets inherently forced to return empty from {dest}."}}, {"@type": "Question", "name": "Are carbon offset taxes integrated?", "acceptedAnswer": {"@type": "Answer", "text": "Final routing block prices actively calculate and integrate required environmental surcharges."}}, {"@type": "Question", "name": "Does pricing fluctuate during peak {dest} holidays?", "acceptedAnswer": {"@type": "Answer", "text": "Inventory demands severely compress during peak seasons, actively raising dynamic procurement rates."}}]}
+    </script>"""
+    ]
+    return schemas[theme_id].replace("{origin}", origin).replace("{dest}", dest)
+
+def get_theme_content(theme_id, origin, dest):
+    contents = [
+        # Theme 0: Corporate
+        """
+    <section class="section-padding" style="background: var(--graphene);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4.5rem;">
+                <h2 class="serif" style="font-size: 3.5rem;">Corporate Fleet: <span class="gold-text">{origin} to {dest}</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Maximizing ROI & Block Time Efficiency</p>
+            </div>
+            <div class="grid-2" style="grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <!-- Cards Omitted for brevity in this generator, replaced with core values -->
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Super Midsize Jets</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Citation X / Challenger 350</p>
+                    <p style="margin-bottom: 2rem;">Maintains corporate productivity via high-speed ku-band WiFi.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Strategic Estimate</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$24k – $45k</p>
+                </div>
+                <div class="benefit-card" style="border-color: var(--primary-gold);">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Heavy Executive Jets</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Global 5000 / Falcon 2000EX</p>
+                    <p style="margin-bottom: 2rem;">Uncompromising boardroom capacity allowing 12-person teams to collaborate.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Strategic Estimate</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$48k – $80k</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Ultra-Long Range</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Gulfstream G650 / Global 7500</p>
+                    <p style="margin-bottom: 2rem;">The apex of business negotiation transit crossing wide oceans easily.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Strategic Estimate</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$85k – $125k+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-padding" style="background: var(--graphene);">
+        <div class="container">
+            <h2 class="serif" style="font-size: 3.5rem; text-align: center; margin-bottom: 4rem;">Executive Intelligence Q&A</h2>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">How does the private flight from {origin} to {dest} optimize executive time?</h4>
+                    <p>Executives gain back hours of operational productivity, launching from {origin} directly into {dest}.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">What corporate factors dictate the charter pricing?</h4>
+                    <p>Primarily the physical footprint of the jet required to move your specific payload safely.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">What are the executive catering options for the {origin} departure?</h4>
+                    <p>We provide discrete, custom culinary arrangements sourced directly from elite local {origin} partners prior to departure.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">Is high-speed connection guaranteed en route to {dest}?</h4>
+                    <p>The majority of our heavy and super-midsize jets accessing {dest} feature robust Ku-band Wi-Fi capabilities.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">Can we conduct boardroom meetings in-flight?</h4>
+                    <p>Absolutely. High-density executive jets offer club-seating arrangements designed specifically for secure internal briefings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+""",
+        # Theme 1: Luxury
+        """
+    <section class="section-padding" style="background: var(--graphene);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4.5rem;">
+                <h2 class="serif" style="font-size: 3.5rem;">VIP Cabin Classes: <span class="gold-text">{origin} to {dest}</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Curating The Ultimate Bespoke Experience</p>
+            </div>
+            <div class="grid-2" style="grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Super Midsize Jets</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Citation Sovereign / Hawker 900XP</p>
+                    <p style="margin-bottom: 2rem;">Crafted specifically for extended family comfort.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Charter Estimate</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$26k – $42k</p>
+                </div>
+                <div class="benefit-card" style="border-color: var(--primary-gold);">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Elite Heavy Jets</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Falcon 900LX / Challenger 605</p>
+                    <p style="margin-bottom: 2rem;">Massive bespoke lavatories and dedicated flight attendants serving Michelin cuisine.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Charter Estimate</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$49k – $85k</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Ultra-Long Range</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Gulfstream G700 / Global Express</p>
+                    <p style="margin-bottom: 2rem;">Defining absolute opulence with circadian lighting systems.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Charter Estimate</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$90k – $130k+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-padding" style="background: var(--graphene);">
+        <div class="container">
+            <h2 class="serif" style="font-size: 3.5rem; text-align: center; margin-bottom: 4rem;">Bespoke Client Inquiries</h2>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">What makes the luxury jet experience from {origin} to {dest} entirely unique?</h4>
+                    <p>From bespoke catering prior to departure in {origin}, to immediate tarmac valet service upon landing in {dest}.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">How much luggage can a VIP jet from {origin} to {dest} accommodate?</h4>
+                    <p>Families can heavily load these jets perfectly designed to transport vast seasonal wardrobes effortlessly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+""",
+        # Theme 2: Physics
+        """
+    <section class="section-padding" style="background: var(--graphene);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4.5rem;">
+                <h2 class="serif" style="font-size: 3.5rem;">Aircraft Physics: <span class="gold-text">{origin} to {dest}</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Analyzing Thrust, Range, and Altitude Parameters</p>
+            </div>
+            <div class="grid-2" style="grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Super Midsize Jets</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Citation X / Challenger 300</p>
+                    <p style="margin-bottom: 2rem;">Engineered for high-altitude slicing near Mach 0.92.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Pricing Matrix</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$22k – $38k</p>
+                </div>
+                <div class="benefit-card" style="border-color: var(--primary-gold);">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Heavy Jets</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Falcon 2000EX / Global 5000</p>
+                    <p style="margin-bottom: 2rem;">Massive bypass ratio engines calculate raw transcontinental thrust.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Pricing Matrix</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$46k – $72k</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Ultra-Long Range</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Gulfstream G650ER / Global 7500</p>
+                    <p style="margin-bottom: 2rem;">Operating efficiently past 45,000 feet, these marvels annihilate drag coefficients.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Pricing Matrix</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$82k – $115k+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-padding" style="background: var(--graphene);">
+        <div class="container">
+            <h2 class="serif" style="font-size: 3.5rem; text-align: center; margin-bottom: 4rem;">Technical Airspace Constraints</h2>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">What is the true flight time from {origin} to {dest} on a private jet?</h4>
+                    <p>The pure block time varies strictly regarding winter jet stream pressures across the vector.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">Does aircraft range limit the {origin} to {dest} mission?</h4>
+                    <p>For mid-size and light jets encountering incredibly adverse headwinds, a technical fuel diversion may be injected.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+""",
+        # Theme 3: Financial Optimization
+        """
+    <section class="section-padding" style="background: var(--graphene);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4.5rem;">
+                <h2 class="serif" style="font-size: 3.5rem;">Optimized Quotations: <span class="gold-text">{origin} to {dest}</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Aggregating The Private Aviation Cost Market</p>
+            </div>
+            <div class="grid-2" style="grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Super Midsize Jets</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Citation X / Challenger 350</p>
+                    <p style="margin-bottom: 2rem;">The financially dominant choice for mid-range transits offering incredibly competitive rates.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Core Pricing</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$25k – $40k</p>
+                </div>
+                <div class="benefit-card" style="border-color: var(--primary-gold);">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Heavy Jets</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Gulfstream GIV / Falcon 2000EX</p>
+                    <p style="margin-bottom: 2rem;">The definitive blend of massive volume and long-distance financial equilibrium.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Core Pricing</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$45k – $75k</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 2.2rem;">Ultra-Long Range</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Gulfstream G650 / Global 7500</p>
+                    <p style="margin-bottom: 2rem;">When budgets expand to demand pure, uncompromising range to avoid ATC entirely.</p>
+                    <h4 class="serif" style="color: #fff; margin-bottom: 0.5rem;">Core Pricing</h4>
+                    <p style="font-size: 1.6rem; font-weight: 600;">$80k – $110k+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-padding" style="background: var(--graphene);">
+        <div class="container">
+            <h2 class="serif" style="font-size: 3.5rem; text-align: center; margin-bottom: 4rem;">Charter Market Questions</h2>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">How to secure the most optimized {origin} to {dest} private jet cost?</h4>
+                    <p>Executing aggressively means tracking down jets returning to {dest} from {origin} to drastically lower your rate.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 style="font-size: 1.4rem; color: var(--primary-gold); margin-bottom: 0.5rem;">Are there hidden fees crossing from {origin} into {dest}?</h4>
+                    <p>When we present an offer, it fully incorporates any ramp fees, taxes, and positioning charges intrinsically built into the routing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+"""
+    ]
+    return contents[theme_id].replace("{origin}", origin).replace("{dest}", dest)
+
+def get_footer():
+    return """
+        <section class="section-padding" style="background: rgba(26,26,26,0.5); border-top: 1px solid var(--glass-border);">
+        <div class="container">
+            <h2 class="serif" style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Extended Elite Ecosystem</h2>
+            <div class="grid-2" style="grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 1.8rem; margin-bottom: 1rem;">Global Jet Directory</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Access our comprehensive worldwide routing map and current global market rates.</p>
+                    <a href="https://eliteluxurybookings.com/elite-private-jet-charter/" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Hub</a>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 1.8rem; margin-bottom: 1rem;">Private Luxury Yachts</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Secure motor yachts and superyachts globally with fully crewed Michelin service.</p>
+                    <a href="https://eliteluxurybookings.com/luxury-yacht-rentals/" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Yachts</a>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="serif gold-text" style="font-size: 1.8rem; margin-bottom: 1rem;">Exclusive Villa Rentals</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Ultra-premium off-market properties equipped with elite security infrastructures.</p>
+                    <a href="https://eliteluxurybookings.com/luxury-villa-rentals/" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Villas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-padding" style="text-align: center; border-top: 1px solid var(--glass-border);">
+        <div class="container">
+            <h2 class="serif" style="font-size: 3.8rem; margin-bottom: 1.5rem;">Experience The <span class="gold-text">Elite Shift</span></h2>
+            <p style="color: var(--text-main); font-size: 1.3rem; margin-bottom: 3.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">Don't let commercial logistics dictate your mission. Request your bespoke, 100% confidential proposal.</p>
+            <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+                <a href="#top" class="btn btn-gold" style="padding: 1.5rem 4rem; font-size: 1.2rem; border-radius: 8px;">Request Instant Quote</a>
+                <a href="https://wa.me/918801079030" class="btn btn-outline" style="padding: 1.5rem 4rem; font-size: 1.2rem; border-radius: 8px;">WhatsApp Concierge</a>
+            </div>
+        </div>
+    </section>
+    <footer class="section-padding" style="background: #000; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
+        <div class="container">
+            <div class="serif" style="font-size: 2.2rem; margin-bottom: 2rem; color: #fff;">Elite Luxury Bookings</div>
+            <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 3rem; max-width: 600px; margin: 0 auto 3rem;">We curate world-class aviation experiences through a globally verified partner network of elite operators.</p>
+            <p style="color: #444; font-size: 0.8rem; margin-top: 4rem;">© 2026 Elite Luxury Bookings. All rights reserved. Global Aviation Intelligence.</p>
+        </div>
+    </footer>
+    <script>
+        const ENDPOINT = "https://eliteluxurybookings.com/wp-admin/admin-ajax.php?action=submit_valens_trip";
+
+        document.getElementById('tripForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const formContainer = document.getElementById('form-container');
+            const successPanel = document.getElementById('success-panel');
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            btn.disabled = true;
+            btn.innerHTML = `<svg style="animation: spin 1s linear infinite; height: 1.5rem; width: 1.5rem; margin-right: 10px; display: inline-block; vertical-align: text-bottom;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle style="opacity: 0.25;" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path style="opacity: 0.75;" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Securing Proposal...`;
+
+            const payload = {
+                idempotency_key: crypto.randomUUID(),
+                legs: [
+                    {
+                        date: data.travel_date,
+                        passengers: parseInt(data.passengers),
+                        departure_icao: data.departure,
+                        arrival_icao: data.arrival,
+                        time: data.travel_time
+                    }
+                ],
+                customer: {
+                    full_name: data.fullName,
+                    contact: data.contact,
+                    email: data.email
+                }
+            };
+            try {
+                const response = await fetch(ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (response.ok) {
+                    const result = await response.json();
+                    let refDisplay = document.getElementById('trip-ref-display');
+                    let finalTripRef = result.trip_ref || 'PENDING';
+                    if(refDisplay) { refDisplay.innerText = finalTripRef; }
+                    
+                    // GA4 Conversion Tracking
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', {
+                            'currency': 'USD',
+                            'value': 25000,
+                            'transaction_id': finalTripRef
+                        });
+                    }
+
+                    formContainer.style.display = 'none';
+                    if(successPanel) {
+                        successPanel.style.display = 'block';
+                        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                } else {
+                    console.error('API Error');
+                    let errorPanel = document.getElementById('error-panel');
+                    formContainer.style.display = 'none';
+                    if(errorPanel) errorPanel.style.display = 'block';
+                }
+            } catch (err) {
+                console.error('Fatal Error:', err);
+                alert('System Timeout: Please contact us via WhatsApp.');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Commence Route";
+            }
+        });
+
+        const dateInput = document.getElementById('travel_date');
+        if(dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+            dateInput.value = today;
+        }
+
+        // Dynamic Date Injection for SEO Freshness
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const d = new Date();
+        document.querySelectorAll('.current-month').forEach(el => el.innerText = monthNames[d.getMonth()]);
+        document.querySelectorAll('.current-year').forEach(el => el.innerText = d.getFullYear());
+    </script>
+</body>
+</html>
+"""
+
+# ==========================================
+# EXECUTION ENGINE
+# ==========================================
+def run_generator():
+    target_dir = r"C:\Users\imran\OneDrive\Desktop\Eliteluxurybookings\ELB New pages"
+    
+    for idx, route in enumerate(NEW_ROUTES):
+        origin = route[0]
+        dest = route[1]
+        theme_id = idx % 4
+        
+        # Build Filename
+        filename = f"route{origin.lower().replace(' ', '')}to{dest.lower().replace(' ', '')}.html"
+        filepath = os.path.join(target_dir, filename)
+        
+        # Construct full HTML
+        schema_head = get_theme_schema(theme_id, origin, dest)
+        hero = get_hero_template(theme_id, origin, dest)
+        hero = hero + schema_head + "</head>"
+        
+        body_top = get_style_and_body(origin, dest)
+        body_mid = get_theme_content(theme_id, origin, dest)
+        footer = get_footer()
+        
+        full_html = hero + body_top + body_mid + footer
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(full_html)
+            
+        print(f"✅ Generated: {filename} (Theme {theme_id})")
+
+if __name__ == "__main__":
+    run_generator()
+    print("---------------------------------------")
+    print("FINISHED! Your new routing pages are ready!")

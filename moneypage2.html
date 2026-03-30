@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 1. SEO OPTIMIZATION -->
+    <meta name="description"
+        content="Experience elite luxury yacht rental and yacht charter for events. Perfect for yacht weddings, yacht parties, and celebrations across premium destinations worldwide.">
+    <meta name="keywords"
+        content="luxury yacht rental, yacht charter for events, yacht weddings, yacht parties, mega yacht rental, celebration yacht">
+    <title>Luxury Yacht Rental for Events | Weddings, Parties & Celebrations Worldwide</title>
+
+    <!-- 7. FAQ SCHEMA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a yacht rental cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The cost of a luxury yacht rental varies greatly depending on the size of the vessel, the destination, and duration. Daily charters can range from $3,000 for standard yachts to over $50,000 for mega yachts. Weekly VIP charters average between $40,000 to over $1,000,000 for the world's most luxurious superyachts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I host a wedding on a yacht?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Yacht weddings are the pinnacle of exclusivity. Many mega yachts and specialized sailing catamarans are equipped to host 50 to 150+ guests, offering fully catered dining, ballroom spaces, and breathtaking ocean backdrops."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is included in a yacht charter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard luxury yacht charter includes the vessel, an experienced captain, and a dedicated crew (stewardesses, deckhands). Most premium charters also include water toys, snorkeling gear, and bespoke itinerary planning. Fuel, gourmet catering, and port docking fees are typically calculated separately an Advance Provisioning Allowance (APA)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which destinations are best?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For summer events, the Mediterranean coastlines of Ibiza, Mallorca, Monaco, and the Amalfi Coast remain unmatched. For winter escapes and opulent corporate parties, Dubai and the Caribbean Islands offer spectacular weather and elite offshore infrastructures."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography additions for SEO */
+        .seo-content {
+            font-size: 1.15rem;
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 750px;
+        }
+
+        .seo-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=2000');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 30px;
+            margin-left: 8%;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            color: #D4AF37;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: #f0f0f0;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #D4AF37, #B8860B);
+            color: #000;
+            padding: 16px 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 25px rgba(212, 175, 55, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(212, 175, 55, 0.6);
+        }
+
+        .outline-btn {
+            display: inline-block;
+            background: transparent;
+            color: #D4AF37;
+            padding: 14px 48px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            border: 2px solid #D4AF37;
+            cursor: pointer;
+        }
+
+        .outline-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: #D4AF37;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(212, 175, 55, 0.3);
+        }
+
+        .trust-text {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #fff;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Section Layout Utilities */
+        .section-padding {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .bg-dark {
+            background: #000;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(to bottom, #0a0a0a, #000);
+            position: relative;
+        }
+
+        .bg-gradient::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #D4AF37;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #D4AF37;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 10px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #D4AF37;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        /* Form styling */
+        .quote-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 50px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #D4AF37;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #D4AF37;
+        }
+
+        select.form-control {
+            color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23D4AF37%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px auto;
+            padding: 0 40px 0 15px !important;
+            height: 54px;
+            font-size: 16px;
+            line-height: 52px;
+        }
+
+        select.form-control option {
+            background-color: #000;
+            color: #D4AF37;
+            padding: 15px;
+        }
+
+        .urgency-text {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 0.95rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Yachts Section */
+        .yachts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .yacht-card {
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .yacht-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .yacht-img {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .yacht-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .yacht-card:hover .yacht-img img {
+            transform: scale(1.05);
+        }
+
+        .yacht-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+        }
+
+        .yacht-overlay h3 {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .yacht-overlay p {
+            color: #D4AF37;
+            font-size: 1rem;
+        }
+
+        .yacht-info {
+            padding: 25px;
+        }
+
+        .yacht-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec {
+            text-align: center;
+        }
+
+        .spec h4 {
+            font-size: 1.8rem;
+            color: #D4AF37;
+            margin-bottom: 5px;
+        }
+
+        .spec p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .yacht-description {
+            color: #ccc;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .yacht-link {
+            display: inline-block;
+            width: 100%;
+            background: transparent;
+            color: #aaa;
+            text-align: center;
+            padding: 10px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        .yacht-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #D4AF37;
+            color: #D4AF37;
+        }
+
+        /* FAQ Section */
+        .faq-grid {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .faq-item h3 {
+            color: #D4AF37;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        /* Silo Internal Links */
+        .silo-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .silo-btn {
+            padding: 12px 25px;
+            background: transparent;
+            border: 1px solid #D4AF37;
+            color: #D4AF37;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .silo-btn:hover {
+            background: #D4AF37;
+            color: #000;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: #111;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 3px solid #D4AF37;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.pexels.com/photos/2583252/pexels-photo-2583252.jpeg?auto=compress&cs=tinysrgb&w=2000');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .cta-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #D4AF37;
+        }
+
+        .cta-content p {
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+            color: #e0e0e0;
+            line-height: 1.8;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Floating WA */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: #FFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                margin-left: 5%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+            }
+
+            .two-col-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .quote-form-container {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            .section-padding {
+                padding: 4rem 0;
+            }
+
+            .hero {
+                min-height: 600px;
+                height: auto;
+                padding: 100px 0;
+            }
+
+            .hero-content {
+                margin-left: 0;
+                text-align: center;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 2.8rem !important;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem !important;
+            }
+
+            .cta-content h2 {
+                font-size: 2.2rem !important;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-button, .outline-btn {
+                width: 100%;
+                display: block;
+                padding: 14px 20px;
+                text-align: center;
+            }
+
+            .trust-text {
+                font-size: 0.75rem;
+            }
+
+            .feature-card {
+                padding: 2rem 1.25rem;
+            }
+            
+            .yacht-info {
+                padding: 1.5rem;
+            }
+            
+            .silo-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .silo-btn {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem !important;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem !important;
+            }
+
+            .quote-form-container {
+                padding: 2rem 1rem;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .brand-statement {
+                font-size: 0.75rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1. BREADCRUMBS -->
+    <div class="container" style="padding-top: 25px; position: absolute; z-index: 10; left: 0; right: 0;">
+        <nav style="font-size: 0.9rem; color: #ccc;">
+            <a href="/" style="color: #D4AF37; text-decoration: none;">Home</a> &nbsp;&gt;&nbsp;
+            <a href="/luxury-yacht-rentals/" style="color: #D4AF37; text-decoration: none;">luxury yacht rentals</a>
+            &nbsp;&gt;&nbsp;
+            <span style="color: #fff;">Luxury Yacht Rental for Events</span>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="tagline">EXCLUSIVE MARITIME EXPERIENCE</div>
+            <!-- 1. H1 SEO Optimization -->
+            <h1>Luxury Yacht Rental for Events</h1>
+            <p>Host your dream wedding, milestone celebration, or exclusive event aboard our premium fleet of luxury
+                yachts worldwide.</p>
+            <a href="#quote" class="cta-button">Get Quote</a>
+            <span class="trust-text"><i class="fas fa-shield-halved" style="margin-right:8px;"></i> Trusted by global
+                clients &nbsp;|&nbsp; 10,000+ aircraft & yacht access</span>
+        </div>
+    </section>
+
+    <!-- Intro Content Section -->
+    <section class="section-padding bg-gradient">
+        <div class="container">
+            <div class="section-title">
+                <h2>Yacht Charter for Weddings & Celebrations</h2>
+                <p>Curating the absolute elite echelon of maritime escapes.</p>
+            </div>
+
+            <div class="two-col-grid">
+                <div class="seo-content">
+                    <p>When searching for a spectacular venue, a <strong>luxury yacht rental for events</strong>
+                        redefines opulence constraints. Setting sail provides you and your esteemed guests with an
+                        unrivaled level of exclusivity, panoramic oceanic views, and totally personalized hospitality
+                        impossible to replicate on shore.</p>
+
+                    <p>Whether you require a majestic sunset <strong>yacht charter for weddings</strong> cascading
+                        against the Amalfi coast, an upscale <strong>yacht party</strong> cruising the shores of Dubai,
+                        or an intimate anniversary celebration, our curated network ensures your exacting specifications
+                        are met instantly.</p>
+
+                    <p>Every vessel acts as a bespoke floating palace. From Michelin-star onboard catering profiles
+                        crafted by private chefs to synchronized drone photography and VIP security handling—your
+                        celebration remains flawlessly managed from embarkation to your final toast.</p>
+                </div>
+
+                <div class="features-grid" style="margin-top: 0;">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-glass-cheers"></i></div>
+                        <h3>Weddings & Celebrations</h3>
+                        <p>Perfect for weddings, anniversaries, birthdays, and milestone celebrations with custom
+                            amenities.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-concierge-bell"></i></div>
+                        <h3>Personalized Service</h3>
+                        <p>Custom catering, live entertainment, and logistics tailored entirely to your requirements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ADD KEYWORD-RICH H2 SECTIONS & EXTERNAL LINK -->
+            <div style="margin-top: 80px; border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 60px;">
+                <div class="features-grid" style="margin-top: 0; gap: 40px;">
+                    <div class="feature-card" style="text-align: left; background: rgba(0,0,0,0.4);">
+                        <h2 class="serif" style="font-size: 1.8rem; color: #D4AF37; margin-bottom: 1rem;">Luxury Yacht
+                            Charter for Corporate Events</h2>
+                        <p class="seo-content" style="margin-bottom: 0; font-size: 1.05rem;">Impress clients and reward
+                            top performers with a fully catered maritime experience. Our elite corporate charters
+                            include onboard Wi-Fi, presentation capabilities, and discrete VIP service, recognized by
+                            industry leaders like <a href="https://www.forbestravelguide.com/" target="_blank"
+                                style="color: #D4AF37;">Forbes Travel Guide</a> for absolute excellence.</p>
+                    </div>
+
+                    <div class="feature-card" style="text-align: left; background: rgba(0,0,0,0.4);">
+                        <h2 class="serif" style="font-size: 1.8rem; color: #D4AF37; margin-bottom: 1rem;">Private Yacht
+                            Rental for Birthday Parties</h2>
+                        <p class="seo-content" style="margin-bottom: 0; font-size: 1.05rem;">Celebrate your milestone
+                            birthday surrounded by panoramic ocean views and customized entertainment. From live
+                            acoustic bands on deck to private chefs crafting bespoke menus, your birthday yacht party
+                            will be unforgettable.</p>
+                    </div>
+
+                    <div class="feature-card" style="text-align: left; background: rgba(0,0,0,0.4);">
+                        <h2 class="serif" style="font-size: 1.8rem; color: #D4AF37; margin-bottom: 1rem;">Exclusive
+                            Yacht Wedding Packages</h2>
+                        <p class="seo-content" style="margin-bottom: 0; font-size: 1.05rem;">Exchange vows beneath the
+                            sails with our comprehensive luxury yacht wedding packages. We manage every detail including
+                            floral arrangements, marriage officiants, and reception catering for up to 150 of your
+                            closest guests.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content SEO Section: Types of Yachts -->
+    <section class="section-padding bg-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Types of Luxury Yachts Explained</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" style="text-align: left;">
+                    <h3 style="color: #D4AF37;">Mega Yachts (Over 150ft)</h3>
+                    <p style="color: #ccc; line-height: 1.7;">The absolute pinnacle of luxury yacht rental available on
+                        the market today. Capable of comfortably housing incredible guest capacities. These vessels
+                        typically contain massive ballrooms, infinity pools, onboard cinemas, and helipads. Ideal for
+                        enormous weddings or elite corporate events accommodating vast party sizes.</p>
+                </div>
+                <div class="feature-card" style="text-align: left;">
+                    <h3 style="color: #D4AF37;">Motor Yachts (80–140ft)</h3>
+                    <p style="color: #ccc; line-height: 1.7;">Sleek, incredibly fast, and featuring beautifully zoned
+                        entertainment decks. They strike the ultimate balance between performance and intimacy, boasting
+                        magnificent sun decks and vast dining saloons ideal for high-ticket birthday yacht parties or
+                        secluded VIP celebrations.</p>
+                </div>
+                <div class="feature-card" style="text-align: left;">
+                    <h3 style="color: #D4AF37;">Sailing Yachts & Catamarans</h3>
+                    <p style="color: #ccc; line-height: 1.7;">For clients pursuing romantic serenity, wide-beam
+                        Catamarans and grand Sailing Yachts offer immense deck space and stability. Known for silent
+                        cruising, they serve brilliantly as platforms for intimate wedding exchanges beneath the quiet
+                        sails.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ADD PRICING SECTION -->
+    <section class="section-padding" style="background: #111;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Yacht Rental Pricing Guide</h2>
+                <p>Transparent baseline rates for our global maritime fleet.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 style="color: #fff; font-size: 1.8rem;">Standard Yacht</h3>
+                    <p style="color: #D4AF37; font-size: 1.3rem; font-weight: 600; margin: 15px 0;">$3,000 – $10,000/day
+                    </p>
+                    <p style="color: #ccc;">Sleek day-cruisers and intimate sailing yachts optimal for small groups and
+                        romantic occasions.</p>
+                </div>
+                <div class="feature-card"
+                    style="border-color: #D4AF37; transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);">
+                    <h3 style="color: #fff; font-size: 1.8rem;">Premium Yacht</h3>
+                    <p style="color: #D4AF37; font-size: 1.3rem; font-weight: 600; margin: 15px 0;">$10,000 –
+                        $50,000/day</p>
+                    <p style="color: #ccc;">Expansive motor yachts featuring jacuzzis, multiple decks, and full crew
+                        capability for large parties.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 style="color: #fff; font-size: 1.8rem;">Mega Yacht</h3>
+                    <p style="color: #D4AF37; font-size: 1.3rem; font-weight: 600; margin: 15px 0;">$50,000 –
+                        $500,000+/week</p>
+                    <p style="color: #ccc;">The absolute pinnacle of luxury. Helipads, cinemas, submarines, and ballroom
+                        spaces included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. LOCATION SEO BOOST -->
+    <section class="section-padding bg-gradient">
+        <div class="container">
+            <div class="section-title">
+                <h2>Luxury Yacht Rentals in Top Destinations</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Ibiza</h3>
+                    <p style="color: #ccc;">The global capital of elite oceanic nightlife. An Ibiza yacht party charter
+                        provides direct access to secluded coves and the island's most vibrant coastal venues.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Mallorca</h3>
+                    <p style="color: #ccc;">Offering tranquil azure waters and dramatic cliffs, Mallorca remains the
+                        Mediterranean crown jewel for highly romantic and secluded yacht weddings.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Dubai</h3>
+                    <p style="color: #ccc;">Winter luxury perfected. Cruise beneath extreme modern architecture and
+                        massive skylines aboard advanced mega yachts tailored for ultra-premium events.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Monaco</h3>
+                    <p style="color: #ccc;">The ultimate flex of sophistication. Host your corporate gathering or
+                        milestone celebration overlooking the legendary French Riviera coastline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. LEAD GENERATION (CRITICAL) -->
+    <section id="quote" class="section-padding bg-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Design Your Premium Event</h2>
+                <p>Engage our 24/7 concierge. Receive an optimized fleet proposal within two hours.</p>
+            </div>
+
+            <div class="quote-form-container">
+                <form id="leadForm" onsubmit="submitLead(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="fullName" class="form-control"
+                                placeholder="Hon. John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Private Email *</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="client@exclusive.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp Number *</label>
+                            <input type="tel" id="whatsapp" name="phone" class="form-control"
+                                placeholder="+1 234 567 8900" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested</label>
+                            <select id="service" name="services" class="form-control">
+                                <option value="Private Jet Charter">Private Jet Charter</option>
+                                <option value="Luxury Yacht Charter" selected>Luxury Yacht Charter</option>
+                                <option value="Private Villa Rental">Private Villa Rental</option>
+                                <option value="Multi-Service / Concierge">Multi-Service / Concierge</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Estimated Travel Date</label>
+                            <input type="date" id="date" name="travelDate" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <input type="number" id="guests" name="passengers" class="form-control" min="1"
+                                placeholder="e.g. 4">
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget Range</label>
+                            <select id="budget" name="budget" class="form-control">
+                                <option value="">Select Range</option>
+                                <option value="50k+">$50,000+</option>
+                                <option value="100k+">$100,000+</option>
+                                <option value="250k+">$250,000+</option>
+                                <option value="500k+">$500,000+</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="requirements">Additional Requirements</label>
+                            <textarea id="requirements" name="requirements" class="form-control"
+                                style="resize:vertical; min-height:100px;"
+                                placeholder="Destinations, catering rules, security needs..."></textarea>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" id="submitBtn" class="cta-button" style="width: 100%;">Secure My Private Proposal</button>
+                        <p class="urgency-text">Limited availability for peak season bookings. Secure priority vessel
+                            access today.</p>
+                    </div>
+                </form>
+
+                <div id="formMsg"
+                    style="display:none; text-align:center; padding: 3rem 0; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 15px; background: rgba(20, 20, 20, 0.9);">
+                    <h3
+                        style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #D4AF37; margin-bottom: 1rem;">
+                        Request Successfully Received</h3>
+                    <p style="color: #fff; font-size: 1.1rem; margin-bottom: 2rem;">A dedicated broker is evaluating
+                        active global fleet positioning. You may initiate a rapid secure connection via WhatsApp now.
+                    </p>
+                    <a href="https://wa.me/918801079030" class="cta-button" target="_blank"
+                        style="padding: 1rem 2.5rem;"
+                        onclick="typeof gtag === 'function' && gtag('event', 'whatsapp_click');">Speak Instantly on
+                        WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yachts Section (Fleet / Affiliate) -->
+    <section id="fleet" class="section-padding bg-gradient">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Premium Yacht Fleet</h2>
+                <p>Select from our meticulously maintained luxury yachts, each offering unique features for your special
+                    occasion.</p>
+            </div>
+
+            <div class="yachts-grid">
+                <!-- Yacht 1 -->
+                <div class="yacht-card">
+                    <div class="yacht-img">
+                        <img src="https://images.pexels.com/photos/30264731/pexels-photo-30264731.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Oceanis 62 luxury mega yacht rental for events" loading="lazy">
+                        <div class="yacht-overlay">
+                            <h3>Serenity</h3>
+                            <p>180ft Mega Yacht</p>
+                        </div>
+                    </div>
+                    <div class="yacht-info">
+                        <div class="yacht-specs">
+                            <div class="spec">
+                                <h4>24</h4>
+                                <p>Guests</p>
+                            </div>
+                            <div class="spec">
+                                <h4>6</h4>
+                                <p>Cabins</p>
+                            </div>
+                            <div class="spec">
+                                <h4>14</h4>
+                                <p>Crew</p>
+                            </div>
+                        </div>
+                        <div class="yacht-description">
+                            The ultimate event yacht with a grand ballroom, helipad, and infinity pool. Perfect for
+                            large weddings and corporate gatherings.
+                        </div>
+                        <!-- 5. Affiliate CTA modified -->
+                        <div style="display:flex; gap:10px; flex-direction: column;">
+                            <a href="#quote" class="cta-button"
+                                style="margin:0; text-align:center; padding: 12px; font-size: 0.9rem;">Request Specific
+                                Quote</a>
+                            <a href="https://www.yachting.com/en-gb?AffiliateID=elbookings" class="yacht-link">Reserve
+                                Your Yacht Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yacht 2 -->
+                <div class="yacht-card">
+                    <div class="yacht-img">
+                        <img src="https://images.pexels.com/photos/33852930/pexels-photo-33852930.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Luxury motor yacht charter for sunset wedding" loading="lazy">
+                        <div class="yacht-overlay">
+                            <h3>Azure Majesty</h3>
+                            <p>135ft Motor Yacht</p>
+                        </div>
+                    </div>
+                    <div class="yacht-info">
+                        <div class="yacht-specs">
+                            <div class="spec">
+                                <h4>16</h4>
+                                <p>Guests</p>
+                            </div>
+                            <div class="spec">
+                                <h4>5</h4>
+                                <p>Cabins</p>
+                            </div>
+                            <div class="spec">
+                                <h4>8</h4>
+                                <p>Crew</p>
+                            </div>
+                        </div>
+                        <div class="yacht-description">
+                            Modern masterpiece with panoramic views, beach club, and cinema. Ideal for anniversary
+                            celebrations, Events and VIP parties.
+                        </div>
+                        <div style="display:flex; gap:10px; flex-direction: column;">
+                            <a href="#quote" class="cta-button"
+                                style="margin:0; text-align:center; padding: 12px; font-size: 0.9rem;">Request Specific
+                                Quote</a>
+                            <a href="https://www.yachting.com/en-gb?AffiliateID=elbookings" class="yacht-link">Reserve
+                                Your Yacht Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yacht 3 -->
+                <div class="yacht-card">
+                    <div class="yacht-img">
+                        <img src="https://images.pexels.com/photos/30710213/pexels-photo-30710213.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Luxury sailing yacht rental for tropical events" loading="lazy">
+                        <div class="yacht-overlay">
+                            <h3>Oceanis</h3>
+                            <p>82ft Sailing Yacht</p>
+                        </div>
+                    </div>
+                    <div class="yacht-info">
+                        <div class="yacht-specs">
+                            <div class="spec">
+                                <h4>12</h4>
+                                <p>Guests</p>
+                            </div>
+                            <div class="spec">
+                                <h4>4</h4>
+                                <p>Cabins</p>
+                            </div>
+                            <div class="spec">
+                                <h4>5</h4>
+                                <p>Crew</p>
+                            </div>
+                        </div>
+                        <div class="yacht-description">
+                            Classic elegance with teak decks, spacious salon, and water sports platform. Perfect for
+                            intimate celebrations and engagement parties.
+                        </div>
+                        <div style="display:flex; gap:10px; flex-direction: column;">
+                            <a href="#quote" class="cta-button"
+                                style="margin:0; text-align:center; padding: 12px; font-size: 0.9rem;">Request Specific
+                                Quote</a>
+                            <a href="https://www.yachting.com/en-gb?AffiliateID=elbookings" class="yacht-link">Reserve
+                                Your Yacht Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Testimonials -->
+    <section class="section-padding bg-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trusted By Global Clients</h2>
+            </div>
+            <div class="two-col-grid" style="max-width: 1000px; margin: 0 auto;">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"We utilized Elite Luxury Bookings for our corporate retreat in Monaco.
+                        The mega yacht exceeded every expectation, and the crew's coordination was flawless."</p>
+                    <p class="testimonial-author">— Jonathan H., VIP Executive</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Our yacht wedding in Mallorca was an absolute dream. The catering, the
+                        acoustic music flowing on the deck... perfection delivered at the highest standard."</p>
+                    <p class="testimonial-author">— Sarah & James, London</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FAQ SECTION -->
+    <section class="section-padding bg-gradient">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How much does a yacht rental cost?</h3>
+                    <p>The cost of a luxury yacht rental varies greatly depending on the size of the vessel, the
+                        destination, and duration. Daily charters can range from $3,000 for standard yachts to over
+                        $50,000 for mega yachts. Weekly VIP charters average between $40,000 to over $1,000,000 for the
+                        world's most luxurious superyachts.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I host a wedding on a yacht?</h3>
+                    <p>Absolutely. Yacht weddings are the pinnacle of exclusivity. Many mega yachts and specialized
+                        sailing catamarans are equipped to host 50 to 150+ guests, offering fully catered dining,
+                        ballroom spaces, and breathtaking ocean backdrops.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What is included in a yacht charter?</h3>
+                    <p>A standard luxury yacht charter includes the vessel, an experienced captain, and a dedicated
+                        crew. Most premium charters also include water toys, snorkeling gear, and bespoke itinerary
+                        planning. Fuel and catering are calculated via an Advance Provisioning Allowance (APA).</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Which destinations are best?</h3>
+                    <p>For summer events, the Mediterranean coastlines of Ibiza, Mallorca, Monaco, and the Amalfi Coast
+                        remain unmatched. For winter escapes and opulent corporate parties, Dubai and the Caribbean
+                        Islands offer spectacular weather and elite offshore infrastructures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. INTERNAL LINKING (SILO STRUCTURE) -->
+    <section class="section-padding bg-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore Yacht Guides</h2>
+            </div>
+            <div class="silo-links">
+                <a href="https://eliteluxurybookings.com/luxury-yacht-rentals/boat-trip-from-mallorca-to-formentera/"
+                    target="_blank" class="silo-btn">Mallorca Yacht Guide</a>
+                <a href="https://eliteluxurybookings.com/luxury-yacht-rentals/italian-riviera-yacht-charter-portofino/"
+                    target="_blank" class="silo-btn">Italian Riviera Yacht Charter</a>
+                <a href="https://eliteluxurybookings.com/luxury-yacht-rentals/best-sailing-yacht-charter/"
+                    target="_blank" class="silo-btn">Best Sailing Yacht Charter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Create Unforgettable Moments at Sea</h2>
+            <p>Whether you're planning a wedding ceremony on the water, an anniversary cruise, or a corporate
+                celebration, our luxury yachts provide the perfect setting for extraordinary events. Contact us to begin
+                your maritime journey.</p>
+            <div
+                style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap; margin-top:20px;">
+                <a href="#quote" class="cta-button" style="margin-top:0;">Get Quote</a>
+                <a href="#fleet" class="outline-btn" style="margin-top:0;">View Yachts</a>
+            </div>
+            <p class="urgency-text" style="color: #fff; margin-top: 20px;">Limited availability for peak season bookings
+            </p>
+        </div>
+    </section>
+
+    <!-- 7. STICKY CTA BUTTON -->
+    <a href="#quote"
+        style="position: fixed; bottom: 30px; left: 30px; background: linear-gradient(45deg, #D4AF37, #B8860B); color: #000; padding: 15px 30px; border-radius: 50px; font-weight: 700; text-transform: uppercase; text-decoration: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); z-index: 1000; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+        onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(212, 175, 55, 0.8)';"
+        onmouseout="this.style.transform='none'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.5)';">Get Quote</a>
+
+    <!-- Desktop floating WA icon -->
+    <a href="https://wa.me/918801079030" class="wa-float" target="_blank" aria-label="WhatsApp Concierge"
+        title="Plan your journey via WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+        </svg>
+    </a>
+
+    <!-- JAVASCRIPT: Lead Generation Script -->
+    <script>
+        const endpoint = 'https://script.google.com/macros/s/AKfycbxwH6b82MCg90tYS-yTwUMWw1ePx2S3oBdn3BC5U1UAt2uQRCB2bq03bzPP52ygUGU6UA/exec';
+
+        async function submitLead(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const form = document.getElementById('leadForm');
+            const msg = document.getElementById('formMsg');
+
+            typeof gtag === 'function' && gtag('event', 'generate_lead');
+
+            btn.innerText = 'SECURELY SENDING...';
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+
+            try {
+                await fetch(endpoint, {
+                    method: 'POST', mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                form.style.display = 'none';
+                msg.style.display = 'block';
+                document.getElementById('quote').scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                console.error(error);
+                form.style.display = 'none';
+                msg.style.display = 'block';
+                document.getElementById('quote').scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                btn.innerText = 'Get Custom Yacht Quote';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>
