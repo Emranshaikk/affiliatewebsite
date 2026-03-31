@@ -77,10 +77,10 @@ def get_hero_template(theme_id, origin, dest):
     ]
     
     desc_list = [
-        f"Calculate your exact {origin} to {dest} private jet cost. Book our elite VIP charter hire services for ultimate privacy and rapid turnaround.",
-        f"Secure aggressive empty leg rates for your {origin} to {dest} private jet rental. We provide transparent pricing for last minute charter flights.",
-        f"Review precise aircraft flight times and charter costs between {origin} and {dest}. Maximize block efficiency with our elite jet hire fleet.",
-        f"Unlock specialized luxury jet charter pricing from {origin} to {dest} for last minute travel. High-speed executive routing for elite passengers."
+        f"Calculate your exact {origin} to {dest} <a href='private-jet-cost.html' style='color:inherit;text-decoration:none;'>private jet cost</a>. Book our elite VIP charter hire services for ultimate privacy and rapid turnaround.",
+        f"Secure aggressive <a href='empty-leg-flights-discount.html' style='color:inherit;text-decoration:none;'>empty leg rates</a> for your {origin} to {dest} private jet rental. We provide transparent pricing for last-minute charter flights.",
+        f"Review precise aircraft flight times and <a href='private-jet-cost.html' style='color:inherit;text-decoration:none;'>charter costs</a> between {origin} and {dest}. Maximize block efficiency with our elite jet hire fleet.",
+        f"Unlock specialized luxury <a href='private-jet-charter-broker-services.html' style='color:inherit;text-decoration:none;'>jet charter pricing</a> from {origin} to {dest} for last-minute travel. High-speed executive routing for elite passengers."
     ]
     meta_desc = desc_list[theme_id]
     title = titles[theme_id]
@@ -105,7 +105,7 @@ def get_hero_template(theme_id, origin, dest):
       "@type": "BreadcrumbList",
       "itemListElement": [
         {{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eliteluxurybookings.com/" }},
-        {{ "@type": "ListItem", "position": 2, "name": "Elite Private Jet Charter", "item": "https://eliteluxurybookings.com/elite-private-jet-charter/" }},
+        {{ "@type": "ListItem", "position": 2, "name": "Private Jet Charter", "item": "https://eliteluxurybookings.com/moneypage1.html" }},
         {{ "@type": "ListItem", "position": 3, "name": "{origin} to {dest}", "item": "https://eliteluxurybookings.com/{slug}/" }}
       ]
     }}
@@ -188,8 +188,17 @@ def get_style_and_body(origin, dest):
 
     <header class="hero" id="top">
         <div class="container">
+            <!-- Visible Breadcrumbs -->
+            <nav style="margin-bottom: 2rem; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">
+                <a href="https://eliteluxurybookings.com/" style="color: var(--primary-gold); text-decoration: none;">Home</a> 
+                <span style="color: var(--text-muted); margin: 0 10px;">&gt;</span>
+                <a href="moneypage1.html" style="color: var(--primary-gold); text-decoration: none;">Private Jet</a>
+                <span style="color: var(--text-muted); margin: 0 10px;">&gt;</span>
+                <span style="color: var(--text-main);">{origin} to {dest}</span>
+            </nav>
+
             <h1><span class="gold-text">{origin} to {dest}</span> Private Jet Cost <span id="dynamic-date" style="font-size: 0.5em; opacity: 0.8; font-weight: 300; display: block; margin-top: 10px;">(Updated <span class="current-month"></span> <span class="current-year"></span>)</span></h1>
-            <p class="hero-sub">Seeking the precise breakdown of your <strong>{origin} to {dest} private jet cost</strong>? Evade commercial congestion completely. Gain immediate tarmac access and arrive relentlessly fast.</p>
+            <p class="hero-sub">Seeking the precise breakdown of your <strong>{origin} to {dest} <a href="private-jet-cost.html" style="color:inherit; text-decoration:underline; text-decoration-color:var(--primary-gold);">private jet cost</a></strong>? Evade commercial congestion completely. Gain immediate tarmac access and arrive relentlessly fast.</p>
 
             <!-- LIVE SCARCITY PING -->
             <div style="background: rgba(255, 77, 77, 0.05); border: 1px solid rgba(255, 77, 77, 0.3); padding: 12px 20px; border-radius: 12px; margin: 0 auto 2.5rem; max-width: 700px; display: flex; align-items: center; justify-content: center; gap: 15px;">
@@ -272,11 +281,14 @@ def get_style_and_body(origin, dest):
             <div class="grid-2">
                 <div class="seo-content">
                     <h2 class="serif" style="font-size: 2.8rem; color: var(--primary-gold); margin-bottom: 1.5rem;">The Premier Aviation Routing</h2>
-                    <p>Establishing the correct <strong>{origin} to {dest} private jet cost</strong> demands strict execution. Navigating congested commercial hubs destroys business efficiency. Launching your private payload straight into {dest} allows maximum operational success.</p>
-                    <p>Depending on the season, inventory availability dramatically changes. Consult our dispatchers to pinpoint elite operators positioned along this specific corridor.</p>
+                    <p>Establishing the correct <strong>{origin} to {dest} <a href="private-jet-cost.html" style="color:var(--primary-gold); text-decoration:none;">private jet cost</a></strong> demands strict execution. Navigating congested commercial hubs destroys business efficiency. Launching your private payload straight into {dest} allows maximum operational success.</p>
+                    <p>Depending on the season, inventory availability dramatically changes. Consult our dispatchers to pinpoint elite operators positioned along this specific corridor. For those seeking <a href="empty-leg-flights-discount.html" style="color:var(--primary-gold);">discounted empty leg flights</a>, immediate flexibility is required.</p>
                 </div>
                 <div class="glass-panel" style="padding: 3rem; height: 100%;">
-                    <h3 class="serif" style="margin-top:0;">The Tactical Advantage</h3>
+                    <h3 class="serif" style="margin-top:0;">Cost Intelligence</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--text-muted);">Our routing analysis incorporates real-time fuel burns, ramp fees, and repositioning logistics.</p>
+                    <a href="private-jet-cost.html" class="btn btn-outline" style="width:100%; padding: 1rem;">View Pricing Guide</a>
+                    <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 2rem 0;">
                     <ul style="list-style: none; margin: 1rem 0;">
                         <li style="margin-bottom: 1rem;">✓ <strong>Terminal Privacy:</strong> Bypass public zones completely.</li>
                         <li style="margin-bottom: 1rem;">✓ <strong>Rapid Access:</strong> Board and throttle up in minutes.</li>
@@ -536,26 +548,39 @@ def get_theme_content(theme_id, origin, dest):
     ]
     return contents[theme_id].replace("{origin}", origin).replace("{dest}", dest)
 
-def get_footer():
-    return """
+def get_footer(origin, dest):
+    # Dynamic Sibling Routes Generation
+    import random
+    siblings = random.sample(NEW_ROUTES, 8)
+    sibling_html = ""
+    for s_origin, s_dest in siblings:
+        s_filename = f"route{s_origin.lower().replace(' ', '')}to{s_dest.lower().replace(' ', '')}.html"
+        sibling_html += f'<a href="{s_filename}" style="color: var(--text-muted); text-decoration: none; border: 1px solid var(--glass-border); padding: 0.8rem; border-radius: 8px; text-align: center; font-size: 0.85rem; transition: var(--transition);" onmouseover="this.style.borderColor=\'var(--primary-gold)\'; this.style.color=\'var(--primary-gold)\'" onmouseout="this.style.borderColor=\'var(--glass-border)\'; this.style.color=\'var(--text-muted)\'">{s_origin} to {s_dest}</a>'
+
+    return f"""
         <section class="section-padding" style="background: rgba(26,26,26,0.5); border-top: 1px solid var(--glass-border);">
         <div class="container">
-            <h2 class="serif" style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Extended Elite Ecosystem</h2>
+            <h2 class="serif" style="text-align: center; font-size: 2.5rem; margin-bottom: 3.5rem;">Explore <span class="gold-text">Popular Corridors</span></h2>
+            <div class="grid-2" style="grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 5rem;">
+                {sibling_html}
+            </div>
+
+            <h2 class="serif" style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Elite Luxury Ecosystem</h2>
             <div class="grid-2" style="grid-template-columns: repeat(3, 1fr); gap: 2rem;">
                 <div class="benefit-card">
-                    <h3 class="serif gold-text" style="font-size: 1.8rem; margin-bottom: 1rem;">Global Jet Directory</h3>
+                    <h3 class="serif gold-text" style="font-size: 1.8rem; margin-bottom: 1rem;">Private Jet Master Hub</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Access our comprehensive worldwide routing map and current global market rates.</p>
-                    <a href="https://eliteluxurybookings.com/elite-private-jet-charter/" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Hub</a>
+                    <a href="moneypage1.html" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Master Directory</a>
                 </div>
                 <div class="benefit-card">
                     <h3 class="serif gold-text" style="font-size: 1.8rem; margin-bottom: 1rem;">Private Luxury Yachts</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Secure motor yachts and superyachts globally with fully crewed Michelin service.</p>
-                    <a href="https://eliteluxurybookings.com/luxury-yacht-rentals/" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Yachts</a>
+                    <a href="moneypage2.html" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Yachts</a>
                 </div>
                 <div class="benefit-card">
                     <h3 class="serif gold-text" style="font-size: 1.8rem; margin-bottom: 1rem;">Exclusive Villa Rentals</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Ultra-premium off-market properties equipped with elite security infrastructures.</p>
-                    <a href="https://eliteluxurybookings.com/luxury-villa-rentals/" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Villas</a>
+                    <a href="moneypage3.html" class="btn btn-outline" style="padding: 0.8rem 1.5rem; width: 100%;">View Villas</a>
                 </div>
             </div>
         </div>
@@ -580,7 +605,7 @@ def get_footer():
     <script>
         const ENDPOINT = "https://eliteluxurybookings.com/wp-admin/admin-ajax.php?action=submit_valens_trip";
 
-        document.getElementById('tripForm').addEventListener('submit', async function(e) {
+        document.getElementById('tripForm').addEventListener('submit', async function(e) {{
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const formContainer = document.getElementById('form-container');
@@ -591,70 +616,70 @@ def get_footer():
             btn.disabled = true;
             btn.innerHTML = `<svg style="animation: spin 1s linear infinite; height: 1.5rem; width: 1.5rem; margin-right: 10px; display: inline-block; vertical-align: text-bottom;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle style="opacity: 0.25;" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path style="opacity: 0.75;" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Securing Proposal...`;
 
-            const payload = {
+            const payload = {{
                 idempotency_key: crypto.randomUUID(),
                 legs: [
-                    {
+                    {{
                         date: data.travel_date,
                         passengers: parseInt(data.passengers),
                         departure_icao: data.departure,
                         arrival_icao: data.arrival,
                         time: data.travel_time
-                    }
+                    }}
                 ],
-                customer: {
+                customer: {{
                     full_name: data.fullName,
                     contact: data.contact,
                     email: data.email
-                }
-            };
-            try {
-                const response = await fetch(ENDPOINT, {
+                }}
+            }};
+            try {{
+                const response = await fetch(ENDPOINT, {{
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    headers: {{ 'Content-Type': 'application/json', 'Accept': 'application/json' }},
                     body: JSON.stringify(payload)
-                });
-                if (response.ok) {
+                }});
+                if (response.ok) {{
                     const result = await response.json();
                     let refDisplay = document.getElementById('trip-ref-display');
                     let finalTripRef = result.trip_ref || 'PENDING';
-                    if(refDisplay) { refDisplay.innerText = finalTripRef; }
+                    if(refDisplay) {{ refDisplay.innerText = finalTripRef; }}
                     
                     // GA4 Conversion Tracking
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'generate_lead', {
+                    if (typeof gtag === 'function') {{
+                        gtag('event', 'generate_lead', {{
                             'currency': 'USD',
                             'value': 25000,
                             'transaction_id': finalTripRef
-                        });
-                    }
+                        }});
+                    }}
 
                     formContainer.style.display = 'none';
-                    if(successPanel) {
+                    if(successPanel) {{
                         successPanel.style.display = 'block';
-                        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                } else {
+                        successPanel.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+                    }}
+                }} else {{
                     console.error('API Error');
                     let errorPanel = document.getElementById('error-panel');
                     formContainer.style.display = 'none';
                     if(errorPanel) errorPanel.style.display = 'block';
-                }
-            } catch (err) {
+                }}
+            }} catch (err) {{
                 console.error('Fatal Error:', err);
                 alert('System Timeout: Please contact us via WhatsApp.');
-            } finally {
+            }} finally {{
                 btn.disabled = false;
                 btn.innerText = "Commence Route";
-            }
-        });
+            }}
+        }});
 
         const dateInput = document.getElementById('travel_date');
-        if(dateInput) {
+        if(dateInput) {{
             const today = new Date().toISOString().split('T')[0];
             dateInput.setAttribute('min', today);
             dateInput.value = today;
-        }
+        }}
 
         // Dynamic Date Injection for SEO Freshness
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -688,7 +713,7 @@ def run_generator():
         
         body_top = get_style_and_body(origin, dest)
         body_mid = get_theme_content(theme_id, origin, dest)
-        footer = get_footer()
+        footer = get_footer(origin, dest)
         
         full_html = hero + body_top + body_mid + footer
         

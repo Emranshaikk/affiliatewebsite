@@ -1221,19 +1221,29 @@
         </div>
     </section>
 
-    <!-- 3. INTERNAL LINKING (SILO STRUCTURE) -->
-    <section class="section-padding bg-dark">
+    <!-- MARITIME ECOSYSTEM FEATURE GRID -->
+    <section class="section-padding bg-dark" style="border-top: 1px solid rgba(212, 175, 55, 0.2);">
         <div class="container">
             <div class="section-title">
-                <h2>Explore Yacht Guides</h2>
+                <h2>Maritime <span style="color: #D4AF37;">Intelligence Hubs</span></h2>
+                <p>Strategic maritime logistics for the global elite</p>
             </div>
-            <div class="silo-links">
-                <a href="https://eliteluxurybookings.com/luxury-yacht-rentals/boat-trip-from-mallorca-to-formentera/"
-                    target="_blank" class="silo-btn">Mallorca Yacht Guide</a>
-                <a href="https://eliteluxurybookings.com/luxury-yacht-rentals/italian-riviera-yacht-charter-portofino/"
-                    target="_blank" class="silo-btn">Italian Riviera Yacht Charter</a>
-                <a href="https://eliteluxurybookings.com/luxury-yacht-rentals/best-sailing-yacht-charter/"
-                    target="_blank" class="silo-btn">Best Sailing Yacht Charter</a>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <a href="moneypage1.html" class="feature-card" style="text-decoration: none;">
+                    <div class="feature-icon"><i class="fas fa-plane"></i></div>
+                    <h3>Aviation Master</h3>
+                    <p>Global Jet Logistics</p>
+                </a>
+                <a href="moneypage2.html" class="feature-card" style="text-decoration: none; border-color: #D4AF37;">
+                    <div class="feature-icon"><i class="fas fa-ship"></i></div>
+                    <h3>Yacht Master</h3>
+                    <p>Maritime Excellence</p>
+                </a>
+                <a href="moneypage3.html" class="feature-card" style="text-decoration: none;">
+                    <div class="feature-icon"><i class="fas fa-home"></i></div>
+                    <h3>Villa Master</h3>
+                    <p>Hospitality Portfolio</p>
+                </a>
             </div>
         </div>
     </section>
@@ -1270,42 +1280,87 @@
         </svg>
     </a>
 
-    <!-- JAVASCRIPT: Lead Generation Script -->
+    <!-- GLOBAL ECOSYSTEM FOOTER -->
+    <footer class="section-padding" style="background: #000; border-top: 1px solid rgba(212, 175, 55, 0.2);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; text-align: left; margin-bottom: 6rem;">
+                <div>
+                    <h2 style="font-family: 'Playfair Display', serif; color: #D4AF37; font-size: 2.5rem; margin-bottom: 1.5rem;">Elite Luxury Bookings</h2>
+                    <p style="color: #aaa; max-width: 400px;">Redefining the standard of global luxury travel through a unified collective of verified aviation, maritime, and hospitality operators.</p>
+                </div>
+                <div>
+                    <h3 style="font-family: 'Playfair Display', serif; color: #D4AF37; font-size: 1.5rem; margin-bottom: 2rem;">Maritime Hubs</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <a href="moneypage2.html" style="color: #aaa; text-decoration: none;">Yacht Charter Events</a>
+                        <a href="#" style="color: #aaa; text-decoration: none;">Superyacht Matrix</a>
+                        <a href="#" style="color: #aaa; text-decoration: none;">Expedition Logistics</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-family: 'Playfair Display', serif; color: #D4AF37; font-size: 1.5rem; margin-bottom: 2rem;">Master Ecosystem</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <a href="moneypage1.html" style="color: #aaa; text-decoration: none;">Aviation Master</a>
+                        <a href="moneypage2.html" style="color: #aaa; text-decoration: none;">Yacht Master</a>
+                        <a href="moneypage3.html" style="color: #aaa; text-decoration: none;">Villa Master</a>
+                    </div>
+                </div>
+            </div>
+            <p style="color: #333; font-size: 0.8rem; border-top: 1px solid #111; padding-top: 3rem;">© 2026 Elite Luxury Bookings. All rights reserved. Registered Global Intelligence Agency.</p>
+        </div>
+    </footer>
+
     <script>
-        const endpoint = 'https://script.google.com/macros/s/AKfycbxwH6b82MCg90tYS-yTwUMWw1ePx2S3oBdn3BC5U1UAt2uQRCB2bq03bzPP52ygUGU6UA/exec';
+        const ENDPOINT = "https://eliteluxurybookings.com/wp-admin/admin-ajax.php?action=submit_valens_trip";
 
         async function submitLead(event) {
             event.preventDefault();
             const btn = document.getElementById('submitBtn');
             const form = document.getElementById('leadForm');
             const msg = document.getElementById('formMsg');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
 
-            typeof gtag === 'function' && gtag('event', 'generate_lead');
-
-            btn.innerText = 'SECURELY SENDING...';
+            btn.innerText = 'INITIALIZING MARITIME PROTOCOL...';
             btn.disabled = true;
 
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => data[key] = value);
+            const payload = {
+                idempotency_key: crypto.randomUUID(),
+                legs: [{
+                    date: data.travelDate || "ASAP",
+                    passengers: parseInt(data.passengers) || 1,
+                    departure_icao: data.departure || "MARITIME",
+                    arrival_icao: data.destination || "DIRECT",
+                    notes: `Service: Yacht Charter | Requirements: ${data.requirements || 'N/A'}`
+                }],
+                customer: {
+                    full_name: data.fullName || data.name,
+                    contact: data.phone || data.contact,
+                    email: data.email
+                }
+            };
 
             try {
-                await fetch(endpoint, {
-                    method: 'POST', mode: 'no-cors',
+                const response = await fetch(ENDPOINT, {
+                    method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(payload)
                 });
-                form.style.display = 'none';
-                msg.style.display = 'block';
-                document.getElementById('quote').scrollIntoView({ behavior: 'smooth' });
+                
+                if (response.ok) {
+                    form.style.display = 'none';
+                    msg.style.display = 'block';
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', { 'value': 50000, 'currency': 'USD' });
+                    }
+                } else {
+                    throw new Error('API Rejection');
+                }
             } catch (error) {
-                console.error(error);
-                form.style.display = 'none';
-                msg.style.display = 'block';
-                document.getElementById('quote').scrollIntoView({ behavior: 'smooth' });
+                console.error('Maritime lead failed:', error);
+                window.location.href = "https://wa.me/918801079030";
             } finally {
-                btn.innerText = 'Get Custom Yacht Quote';
                 btn.disabled = false;
+                btn.innerText = 'Resubmit Request';
             }
         }
     </script>
