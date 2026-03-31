@@ -8,16 +8,27 @@ import re
 # Format is: ("Origin City", "Destination City")
 
 NEW_ROUTES = [
-    ("Miami", "Aspen"),
-    ("Dallas", "Denver"),
-    ("Chicago", "Miami"),
-    ("San Francisco", "London")
-    # Add as many as you want here! e.g., ("Paris", "Monaco")
+    ("Miami", "Turks and Caicos"),
+    ("Los Angeles", "Cabo"),
+    ("New York", "Aspen"),
+    ("Dallas", "Cancun"),
+    ("Houston", "Miami"),
+    ("San Francisco", "Los Angeles"),
+    ("Las Vegas", "Miami"),
+    ("Los Angeles", "London"),
+    ("Miami", "London"),
+    ("Sydney", "Melbourne"),
+    ("Sydney", "Gold Coast"),
+    ("Sydney", "Perth"),
+    ("Melbourne", "Bali"),
+    ("Sydney", "Dubai"),
+    ("Melbourne", "Sydney"),
+    ("Brisbane", "Sydney"),
+    ("Perth", "Bali")
 ]
 
 # ==========================================
 # ICAO AIRPORT DICTIONARY
-# (Add missing cities here if you want accurate airports in the dropdown)
 # ==========================================
 AIRPORTS = {
     "Miami": '<option value="KOPF" selected>Miami Opa-Locka (KOPF)</option><option value="KMIA">Miami Int (KMIA)</option>',
@@ -30,7 +41,18 @@ AIRPORTS = {
     "Paris": '<option value="LFPB" selected>Paris Le Bourget (LFPB)</option><option value="LFPG">Charles de Gaulle (LFPG)</option>',
     "New York": '<option value="KTEB" selected>Teterboro (KTEB)</option><option value="KHPN">Westchester (KHPN)</option>',
     "Los Angeles": '<option value="KVNY" selected>Van Nuys (KVNY)</option><option value="KLAX">Los Angeles Int (KLAX)</option>',
-    "Las Vegas": '<option value="KLAS" selected>Harry Reid Int (KLAS)</option><option value="KVGT">North Las Vegas (KVGT)</option>'
+    "Las Vegas": '<option value="KLAS" selected>Harry Reid Int (KLAS)</option><option value="KVGT">North Las Vegas (KVGT)</option>',
+    "Dubai": '<option value="OMDB" selected>Dubai International (OMDB)</option><option value="OMDW">Al Maktoum Int (OMDW)</option>',
+    "Turks and Caicos": '<option value="MBPV" selected>Providenciales Int (MBPV)</option>',
+    "Cabo": '<option value="MMSD" selected>Los Cabos Int (MMSD)</option>',
+    "Cancun": '<option value="MMUN" selected>Cancún Int (MMUN)</option>',
+    "Houston": '<option value="KHOU" selected>William P. Hobby (KHOU)</option><option value="KIAH">George Bush Intercontinental (KIAH)</option>',
+    "Sydney": '<option value="YSSY" selected>Sydney Kingsford Smith (YSSY)</option>',
+    "Melbourne": '<option value="YMML" selected>Melbourne Tullamarine (YMML)</option><option value="YMEN">Essendon Fields (YMEN)</option>',
+    "Gold Coast": '<option value="YBCG" selected>Gold Coast Airport (YBCG)</option>',
+    "Perth": '<option value="YPPH" selected>Perth Airport (YPPH)</option>',
+    "Bali": '<option value="WADD" selected>Ngurah Rai Int (WADD)</option>',
+    "Brisbane": '<option value="YBBN" selected>Brisbane Airport (YBBN)</option>'
 }
 
 def get_airport_html(city, default_type="departure"):
@@ -44,15 +66,24 @@ def get_airport_html(city, default_type="departure"):
 # ==========================================
 
 def get_hero_template(theme_id, origin, dest):
-    slug = f"{origin.lower().replace(' ', '-')}-to-{dest.lower().replace(' ', '-')}-private-jet-cost"
+    slug = f"{origin.lower().replace(' ', '-')}-to-{dest.lower().replace(' ', '-')}-private-jet"
+    
+    # Targeting keywords: charter, book, rental, hire, empty leg, last minute
+    titles = [
+      f"Private Jet Charter {origin} to {dest} | Luxury VIP Pricing",
+      f"Book Private Jet {origin} to {dest} | Ultimate Charter Rental",
+      f"Private Jet Rental {origin} to {dest} | Hire VIP Aircraft",
+      f"Empty Leg Flights {origin} to {dest} | Last Minute Private Jet"
+    ]
     
     desc_list = [
-        f"Calculate your exact {origin} to {dest} private jet cost. Bypass commercial chaos entirely with our direct VIP charter routing.",
-        f"Unlock specialized luxury jet charter pricing from {origin} to {dest}. We provide ultimate privacy and rapid turnaround for elite travelers.",
-        f"Review precise aircraft flight times and charter costs between {origin} and {dest}. Maximize block efficiency with our optimized global fleet.",
-        f"Secure aggressive financial block rates for your {origin} to {dest} private jet charter. Transparent taxes, zero hidden positioning fees."
+        f"Calculate your exact {origin} to {dest} private jet cost. Book our elite VIP charter hire services for ultimate privacy and rapid turnaround.",
+        f"Secure aggressive empty leg rates for your {origin} to {dest} private jet rental. We provide transparent pricing for last minute charter flights.",
+        f"Review precise aircraft flight times and charter costs between {origin} and {dest}. Maximize block efficiency with our elite jet hire fleet.",
+        f"Unlock specialized luxury jet charter pricing from {origin} to {dest} for last minute travel. High-speed executive routing for elite passengers."
     ]
     meta_desc = desc_list[theme_id]
+    title = titles[theme_id]
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
